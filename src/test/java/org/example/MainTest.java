@@ -4,6 +4,7 @@ package org.example;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 
 
 import static org.junit.Assert.assertEquals;
@@ -16,24 +17,19 @@ public class MainTest {
     public void testMainMethod() {
 
 
-        ByteArrayOutputStream outContent =
-                new ByteArrayOutputStream();
-
-
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
 
 
         try {
-            System.setOut(new PrintStream(outContent));
+            System.setOut(new PrintStream(output, true, StandardCharsets.UTF_8));
 
 
             Main.main(new String[]{});
 
 
-            assertEquals(
-                    "Hello and welcome!",
-                    outContent.toString().trim()
-            );
+            assertEquals("Hello and welcome!",
+                    output.toString(StandardCharsets.UTF_8).trim());
 
 
         } finally {
