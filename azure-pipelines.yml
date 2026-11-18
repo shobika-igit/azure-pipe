@@ -13,10 +13,8 @@ steps:
 - task: Maven@4
   inputs:
     mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.17'
-    jdkArchitectureOption: 'x64'
+    goals: 'clean test package'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'clean test'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.17'
